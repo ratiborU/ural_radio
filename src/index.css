@@ -81,6 +81,10 @@ a {
 }
 .header__group-link {
   margin-right: 99px;
+  color: #575455;
+}
+.header__group-link:hover {
+  color: #000;
 }
 .header__group-link:last-child {
   margin-right: 0;
