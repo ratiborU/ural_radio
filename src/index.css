@@ -37,19 +37,46 @@ button {cursor: pointer;}
 button::-moz-focus-inner {padding: 0;border: 0;}
 a,a:visited {text-decoration: none;}
 a:hover {text-decoration: none;}
-ul li {list-style: none;}
+ul, ol, li {list-style: none;}
 img {vertical-align: top;}
 h1,h2,h3,h4,h5,h6 {font-size: inherit;font-weight: 400;}
 
+#root {
+  height: 100%;
+}
 
 
+html {
+  height: 100%;
+}
 body {
+  height: 100%;
   font-size: 20px;
   font-family: 'Roboto';
+
+  background: url("./assets/mesh-gradient 1.png"); /* Путь к картинке */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  
+}
+.wrapper {
+  display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+body::before {
+  content: "";
+    
 }
 
 a {
   color: black;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 
@@ -58,13 +85,12 @@ a {
 .header {
   height: 61px;
   background: rgba(238, 246, 252, 1);
-  margin-bottom: 70px;
+  margin-bottom: 188px;
 }
 .header__nav {
   display: flex;
   align-items: center;
   height: 61px;
-  /* max-width: 1382px; */
   margin-left: 184px;
 }
 .header__nav-group {
@@ -99,29 +125,54 @@ a {
 
 
 
-/* About Page */
 
-.about {
-  max-width: 884px;
-  margin: 0 auto;
-  border: 1px solid #000;
-  margin-top: 188px;
 
-  position: relative;
+
+/* Footer */
+.footer {
+  height: 53px;
+  flex: 0 0 auto;
+  background-color: #F0F0F0;
+  display: flex;
+  align-items: center;
 }
-.about__container {
+.footer__text {
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 23px;
+  letter-spacing: 0em;
+  margin: 0 auto;
+}
+
+
+
+
+
+
+/* Main Page */
+.main {
+  width: 884px;
+  margin: 0 auto;
+  padding-top: 166px;
+  position: relative;
+  padding-bottom: 28px;
+  margin-bottom: 67px;
+  background-color: #FFF;
+}
+.main__container {
   width: 828px;
   margin: 0 auto;
   
 }
-.about__title {
+.main__title {
+  position: absolute;
   margin: 0 auto;
-  /* border: 1px solid #000; */
   width: 828px;
-  margin-top: -110px;
   margin-bottom: 36px;
+  top: -110px;
 }
-.about__title-line {
+.main__title-line {
   font-family: Roboto;
   font-size: 86px;
   font-weight: 700;
@@ -130,34 +181,50 @@ a {
   text-align: left;
   margin-top: -30px;
 }
-.about__title-line:first-child {
+.main__title-line:first-child {
   margin-top: 0px;
 }
-.about__title-line:last-child {
+.main__title-line:last-child {
   margin-left: 273px;
 }
-
-.about__paragraph {
+.main__paragraph {
   margin-bottom: 86px;
 }
-.paragraph {}
+.main__paragraph:last-child {
+  margin-bottom: 0px;
+}
+
+
+
+
+
+
+/* Paragaph */
+.paragraph {
+  padding-right: 45px;
+}
 .paragraph__title {
   display: inline-block;
   font-size: 24px;
   font-weight: 500;
   line-height: 28px;
-  margin-bottom: 56px;
-  
-  /* text-decoration: underline; */
+  margin-bottom: 36px;
+}
+.paragraph__title p {
+  margin: 0 6px;
 }
 .paragraph__title::after {
   content: "";
   display: block;
-  /* width: 200px; */
   border-bottom: 1px solid #000;
 }
 .paragraph__text {
-  
+  margin-bottom: 35px;
+  margin-left: 28px;
+  margin-right: 60px; 
+}
+.paragraph__text:last-child {
+  margin-bottom: 0;
 }
 .paragraph__text p {
   font-family: Roboto;
@@ -170,15 +237,72 @@ a {
   margin-bottom: 35px;
   margin-left: 20px;
 }
+.paragraph__number {
+  background-color: #EEF6FC;
+  padding: 0 4px 0 7px;
+  border-radius: 8px;
+}
+.paragraph__text p:last-child {
+  margin-bottom: 0px;
+}
+.paragraph__list {
+  margin-left: 90px;
+}
+.paragraph__list-ol {
+  counter-reset: ol-numbers;
+  margin-left: 83px;
+}
+.paragraph__list-ol .paragraph__item {
+  position: relative;
+  padding: 0 0 0 50px;
+}
+.paragraph__list-ol .paragraph__item::before {
+  counter-increment: ol-numbers;
+  content: counter(ol-numbers) '.';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #EEF6FC;
+  height: 23px;
+  padding: 0 4px 0 7px;
+  border-radius: 8px;
+}
+.paragraph__list-ul {
+
+}
+.paragraph__list-ul li {
+  margin-left: 47px;
+}
+.paragraph__list-ul li::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-image: url('./assets/Ellipse 8.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 33px;
+  margin-left: -47px;
+}
+
+.paragraph__item {
+  margin-bottom: 30px;
+}
+.paragraph__text_list {
+  margin-left: 90px;
+}
+.paragraph__text_list p {
+  margin-left: 0;
+}
+
+
+
+
 
 
 /* SideBar */
 .sidebar {
   width: 364px;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-
   position: absolute;
   top: 0;
   left: -393px;
@@ -224,3 +348,4 @@ a {
 .sidebar:last-child {
   margin-bottom: 0px;
 }
+
