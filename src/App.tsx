@@ -12,6 +12,7 @@ import Catalogpage from './pages/Catalogpage';
 import Editorspage from './pages/Editorspage';
 import Contactspage from './pages/Contactspage';
 import ForAuthorspage from './pages/ForAuthorspage';
+import Editorpage from './pages/Editorpage';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route index element={<Mainpage/>} />
           <Route path="catalog" element={<Catalogpage/>} />
           <Route path="editors" element={<Editorspage/>} />
+          <Route path="editors/:id" element={<Editorpage/>} />
           <Route path="contacts" element={<Contactspage/>} />
           <Route path="authors" element={<ForAuthorspage/>} />
           <Route path="*" element={<Notfoundpage/>} />

@@ -1,34 +1,39 @@
 // import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 // import Aboutpage from '../pages/Aboutpage';
 import image from "../assets/image 4.svg"
 import image2 from "../assets/image 3.svg"
 import Page from './Page';
 
+
+const setActiveLink = ({isActive}) => isActive ? 'header__group-link header__group-link-active' : 'header__group-link';
+
+
 const Layout = () => {
   return (
     <div className="wrapper">
       <header className='header'>
-        <div className="container">
+        {/* <div className="container"> */}
           <nav className='header__nav'>
             <div className="header__nav-group">
-              <Link className="header__group-link" to="/catalog">Каталог</Link>
-              <Link className="header__group-link" to="/editors">Редакция</Link>
-              <Link className="header__group-link" to="/">Главная</Link>
+              <NavLink className={setActiveLink} to="/catalog">Каталог</NavLink>
+              <NavLink className={setActiveLink} to="/editors">Редакция</NavLink>
+              <NavLink className={setActiveLink} to="/">Главная</NavLink>
             </div>
             <div className="header__nav-group">
-              <Link className="header__group-link header__group-link_logo" to="/">URAL RADIO ENGINEERING JOURNAL</Link>
+              <NavLink className="header__group-link header__group-link_logo" to="/">URAL RADIO ENGINEERING JOURNAL</NavLink>
             </div>
             <div className="header__nav-group">
-              <Link className="header__group-link" to="/contacts">Контакты</Link>
-              <Link className="header__group-link" to="/authors">Авторам</Link>
+              <NavLink className={setActiveLink} to="/contacts">Контакты</NavLink>
+              <NavLink className={setActiveLink} to="/authors">Авторам</NavLink>
             </div>
-            <div className='header__languages'>
-              <img src={image} alt="" />
-              <img src={image2} alt="" />
-            </div>
+            
           </nav>
-        </div>
+          <div className='header__languages'>
+            <img src={image} alt="" />
+            <img src={image2} alt="" />
+          </div>
+        {/* </div> */}
       </header>
 
 
