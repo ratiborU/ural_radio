@@ -13,6 +13,8 @@ import Editorspage from './pages/Editorspage';
 import Contactspage from './pages/Contactspage';
 import ForAuthorspage from './pages/ForAuthorspage';
 import Editorpage from './pages/Editorpage';
+import Issuepage from './pages/Issuepage';
+import Articlepage from './pages/Articlepage';
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
         <Route path="/" element={<Layout/>}>
           <Route index element={<Mainpage/>} />
           <Route path="catalog" element={<Catalogpage/>} />
+          <Route path="catalog/:id" element={<Issuepage/>} />
+          <Route path="catalog/article/:id" element={<Articlepage/>} />
           <Route path="editors" element={<Editorspage/>} />
           <Route path="editors/:id" element={<Editorpage/>} />
           <Route path="contacts" element={<Contactspage/>} />

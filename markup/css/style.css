@@ -1,3 +1,4 @@
+/* Обнуляющие стили */
 * {
   padding: 0;
   margin: 0;
@@ -29,9 +30,7 @@ html,body {
 }
 
 html { width:100vw; overflow-x:hidden; }
-
 input,button,textarea {font-family: inherit;}
-
 input::-ms-clear {display: none;}
 button {cursor: pointer;}
 button::-moz-focus-inner {padding: 0;border: 0;}
@@ -41,20 +40,19 @@ ul, ol, li {list-style: none;}
 img {vertical-align: top;}
 h1,h2,h3,h4,h5,h6 {font-size: inherit;font-weight: 400;}
 
-#root {
-  height: 100%;
-}
 
 
-html {
-  height: 100%;
-}
+
+
+/* Здесь все с саздним фоном */
+#root {height: 100%;}
+html {height: 100%;}
 body {
   height: 100%;
   font-size: 20px;
   font-family: 'Roboto';
 
-  background: url("./assets/mesh-gradient 1.png"); /* Путь к картинке */
+  background: url("../assets/mesh-gradient 1.png"); /* Путь к картинке */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -68,16 +66,16 @@ body {
 }
 body::before {
   content: "";
-    
 }
 
 a {
   color: black;
 }
-
 main {
   flex: 1 0 auto;
 }
+
+
 
 
 
@@ -125,7 +123,7 @@ main {
   width: 44px;
   height: 44px;
   /* border: 1px solid #000; */
-  background-image: url('./assets/_logo _urj 2.svg');
+  background-image: url('../assets/_logo\ _urj\ 2.svg');
   background-color:  #000;
   margin-right: 10px;
 }
@@ -157,7 +155,6 @@ main {
 
 
 
-
 /* Footer */
 .footer {
   height: 53px;
@@ -174,7 +171,6 @@ main {
   letter-spacing: 0em;
   margin: 0 auto;
 }
-
 
 
 
@@ -230,6 +226,7 @@ main {
 
 
 /* Paragaph */
+/* универсальные стили для блоков на главной странице и странице для авторов */
 .paragraph {
   padding-right: 45px;
 }
@@ -329,13 +326,9 @@ main {
 
 
 
-
-.editors {
-
-}
-.editors__editor {
-
-}
+/* страница редакторов */
+.editors {}
+.editors__editor {}
 .editor {
   margin-bottom: 67px;
 }
@@ -350,14 +343,9 @@ main {
 }
 .editor__image {
   margin-right: 18px;
-  transition-duration: 0.1s;
 }
 .editor__image:hover {
-  opacity: 0.9;
-  transform: scale(1.02);
-}
-.editor__image:active {
-  transform: scale(0.95);
+  opacity: 0.85;
 }
 .editor__image img {}
 .editor__description {
@@ -379,9 +367,8 @@ main {
   font-weight: 500;
   line-height: normal;
 }
-
 .editors__board {
-  margin-bottom: 70px;
+  
 }
 .editors__board-title{
   margin-bottom: 20px;
@@ -397,14 +384,9 @@ main {
 }
 .editors__board-image {
   margin-bottom: 10px;
-  transition-duration: 0.1s;
 }
 .editors__board-image:hover {
-  opacity: 0.9;
-  transform: scale(1.02);
-}
-.editors__board-image:active {
-  transform: scale(0.95);
+  opacity: 0.85;
 }
 .editors__board-image img {
   object-fit:cover;
@@ -426,8 +408,8 @@ main {
 
 
 
-
 /* Editor page */
+/* страница отдельного редактора */
 .editor {}
 .editor-page {}
 .editor-page__block {
@@ -522,353 +504,18 @@ main {
 
 
 
-/* CatalogPage */
-.catalog{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 50px 54px;
-  /* gap: 50px 36px; */
-}
-.catalog__item{
-}
-.catalog__item-image{
-  position: relative;
-  overflow:hidden;
-  width:240px;
-  height:380px;
-  /* width:180px;
-  height:260px; */
-  margin-bottom: 6px;
-  transition-duration: 0.1s;
-}
-.catalog__item-image img{
-  position: absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:240px;
-  height:380px;
-  /* width:180px;
-  height:260px; */
-  object-fit:cover;
-  
-}
-.catalog__item-image:hover {
-  /* opacity: 0.95; */
-  transform: scale(1.015);
-}
-.catalog__item-image:active {
-  transform: scale(0.95);
-}
-.catalog__item-date{
-  text-align: center;
-  color: #000;
-  font-family: Roboto;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-bottom: 4px;
-}
-.catalog__item-title{
-  text-align: center;
-  color: #000;
-  font-family: Roboto;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-bottom: 6px;
-}
-.catalog__item-button{
-  width: 100%;
-  height: 34px;
-  top: 811px;
-  left: 123px;
-  border-radius: 3px;
-  background: #27729A;
-
-  color: #FFF;
-  font-family: Roboto;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  transition-duration: 0.1s;
-}
-.catalog__item-button:hover {
-  background: rgba(47, 136, 184, 1);
-  transform: scale(1.015);
-}
-.catalog__item-button:active {
-  background: rgba(61, 176, 238, 1);
-  transform: scale(0.95);
-}
-
-
-
-
-
-/* Issue */
-.issue__title {
-  color: #000;
-  font-family: Roboto;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  text-align: center;
-  margin-bottom: 50px;
-}
-.issue__button {
-  width: 236px;
-  height: 54px;
-
-  color: #FFF;
-  font-family: Roboto;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  background-color: #27729A;
-  border-radius: 10px;
-  margin: 0 auto;
-  display: block;
-  margin-bottom: 70px;
-  transition: 0.1s;
-}
-.issue__button:hover {
-  background: rgba(47, 136, 184, 1);
-  transform: scale(1.015);
-}
-.issue__button:active {
-  background: rgba(61, 176, 238, 1);
-  transform: scale(0.95);
-}
-.article-paragraph {
-  display: flex;
-  margin-bottom: 60px;
-}
-.article-paragraph__button {
-  width: 236px;
-  height: 54px;
-
-  color: #FFF;
-  font-family: Roboto;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  background-color: #27729A;
-  border-radius: 10px;
-  display: block;
-  margin-left: 40px;
-  margin-right: 60px;
-  transition: 0.1s;
-}
-.article-paragraph__button:hover {
-  background: rgba(47, 136, 184, 1);
-  transform: scale(1.015);
-}
-.article-paragraph__button:active {
-  background: rgba(61, 176, 238, 1);
-  transform: scale(0.95);
-}
-.article-paragraph__description {}
-.article-paragraph__name {
-  color: #27729A;
-  font-family: Roboto;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  transition: 0.1s;
-}
-.article-paragraph__name:hover {
-  color: rgba(47, 136, 184, 1);
-}
-.article-paragraph__name:active {
-  color: rgba(61, 176, 238, 1);
-}
-.article-paragraph__authors {
-  color: #000;
-  font-family: Roboto;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 100;
-  line-height: normal;
-}
-
-
-
-
-
-/* Article */
-.article {
-  margin-left: 50px;
-}
-.article__title {
-  color: #000;
-  font-family: Roboto;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-bottom: 10px;
-  text-align: center;
-}
-.article__authors {
-  color: #000;
-  font-family: Roboto;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%; /* 30px */
-  text-align: center;
-  margin-bottom: 50px;
-}
-.article__pdf-download {
-  width: 236px;
-  height: 54px;
-
-  color: #FFF;
-  font-family: Roboto;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  background-color: #27729A;
-  border-radius: 10px;
-  /* margin: 0 auto; */
-  display: block;
-  margin-bottom: 70px;
-  transition: 0.1s;
-}
-.article__pdf-download:hover {
-  background: rgba(47, 136, 184, 1);
-  transform: scale(1.015);
-}
-.article__pdf-download:active {
-  background: rgba(61, 176, 238, 1);
-  transform: scale(0.95);
-}
-.article__subtitle {
-  color: #000;
-  font-family: Roboto;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-bottom: 20px;
-}
-.article__text {
-  color: #000;
-  font-family: Roboto;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 150%; /* 30px */
-  margin-bottom: 70px;
-}
-.article__book {
-  color: #000;
-  font-family: Roboto;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 100;
-  line-height: normal;
-  margin-bottom: 70px;
-}
-.article__comments {
-  margin-bottom: 65px;
-}
-.article__comment {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-.comment__image {
-  width: 80px;
-  height: 80px;
-  border: 2px solid #000;
-  border-radius: 50%;
-  margin-right: 30px;
-  /* margin-bottom: 20px; */
-}
-.comment__image img {
-  margin: 12px;
-}
-.comment__description {}
-.comment__text {
-  color: #000;
-  font-family: Roboto;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 200;
-  line-height: normal;
-}
-.comment__date {
-  color: #000;
-  font-family: Roboto;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 200;
-  line-height: normal;
-}
-.article__comment-title {
-  color: #000;
-  font-family: Roboto;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-bottom: 20px;
-}
-.article__comment-field {
-  border: 2px solid #000;
-  border-radius: 2px;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 40px;
-  font-size: 18px;
-}
-.article__comment-button {
-  width: 236px;
-  height: 54px;
-
-  color: #FFF;
-  font-family: Roboto;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  background-color: #27729A;
-  border-radius: 10px;
-  display: block;
-  transition: 0.1s;
-}
-.article__comment-button:hover {
-  background: rgba(47, 136, 184, 1);
-  transform: scale(1.015);
-}
-.article__comment-button:active {
-  background: rgba(61, 176, 238, 1);
-  transform: scale(0.95);
-}
-
-
-
-
-
 
 /* SideBar */
+/* колонка с подпиской */
 .sidebar {
   width: 364px;
   position: absolute;
   top: 0;
   left: -393px;
 }
-.about__sidebar {}
+.about__sidebar {
+  
+}
 .sidebar__image {
   width: 358px;
   margin: 0 auto;
@@ -894,16 +541,6 @@ main {
   line-height: normal;
 
   margin-bottom:  41px;
-
-  transition-duration: 0.1s;
-}
-.sidebar__button:hover {
-  background: rgba(47, 136, 184, 1);
-  transform: scale(1.01);
-}
-.sidebar__button:active {
-  background: rgba(61, 176, 238, 1);
-  transform: scale(0.95);
 }
 .sidebar__text {
   color: #000;

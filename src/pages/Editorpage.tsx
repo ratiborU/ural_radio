@@ -1,9 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import reductors from '../api/reductors';
+import reductors from '../api/ReductorsApi';
 
 const Editorpage = () => {
-  // console.log(useParams().id);
   const {id} = useParams();
   return (
     <div>
