@@ -65,6 +65,8 @@ body {
   display: flex;
 	flex-direction: column;
 	min-height: 100%;
+  overflow: hidden;
+  position: relative;
 }
 body::before {
   content: "";
@@ -77,6 +79,9 @@ a {
 
 main {
   flex: 1 0 auto;
+}
+footer {
+  flex: 0 0 auto;
 }
 
 
@@ -144,11 +149,16 @@ main {
   justify-content: flex-end;
   margin-right: 50px;
 }
-.header__languages img {
+.header__language-img {
   display: block;
-  width: 31px;
+  width: 33px;
+  /* border: 1px solid #000; */
+  margin-top: 12px;
 }
-.header__languages img:first-child {
+.header__languages img {
+  
+}
+.header__language-img:first-child {
   margin-right: 10px;
   /* margin-left: 235px; */
 }
@@ -161,7 +171,6 @@ main {
 /* Footer */
 .footer {
   height: 53px;
-  flex: 0 0 auto;
   background-color: #F0F0F0;
   display: flex;
   align-items: center;
@@ -324,6 +333,14 @@ main {
 .paragraph__text_list p {
   margin-left: 0;
 }
+.forauthors__image {
+  width: 500px;
+  margin: 0 auto;
+  margin-bottom:  50px;
+}
+.forauthors__image img {
+  width: 500px;
+}
 
 
 
@@ -410,7 +427,7 @@ main {
   object-fit:cover;
   width: 175px;
   height: 175px;
-  border-radius: 50%;
+  border-radius: 20px;
 }
 .editors__board-name {
   color: #000;
@@ -442,7 +459,7 @@ main {
   object-fit: cover;
   width: 175px;
   height: 175px;
-  border-radius: 50%;
+  border-radius: 10px;
 }
 .editor-page__description {}
 .editor-page__name {
@@ -676,6 +693,8 @@ main {
 }
 .article-paragraph__description {}
 .article-paragraph__name {
+  display: block;
+  width: 500px;
   color: #27729A;
   font-family: Roboto;
   font-size: 20px;
@@ -691,12 +710,21 @@ main {
   color: rgba(61, 176, 238, 1);
 }
 .article-paragraph__authors {
+  display: block;
+  width: 500px;
   color: #000;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
   font-weight: 100;
   line-height: normal;
+}
+.issue_video {
+  display: block;
+  width: 600px;
+  height: 400px;
+  margin: 0 auto;
+  border: 1px solid #000;
 }
 
 
@@ -727,6 +755,13 @@ main {
   text-align: center;
   margin-bottom: 50px;
 }
+.article__buttons {
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 70px;
+  gap: 0px 50px;
+}
+.article__button-link {}
 .article__pdf-download {
   width: 236px;
   height: 54px;
@@ -739,10 +774,12 @@ main {
   line-height: normal;
   background-color: #27729A;
   border-radius: 10px;
-  /* margin: 0 auto; */
   display: block;
-  margin-bottom: 70px;
+  
   transition: 0.1s;
+}
+.article__pdf-download_second {
+  width: 300px;
 }
 .article__pdf-download:hover {
   background: rgba(47, 136, 184, 1);
@@ -770,14 +807,29 @@ main {
   line-height: 150%; /* 30px */
   margin-bottom: 70px;
 }
-.article__book {
+.article__literature-list {
+  margin-bottom: 70px;
+  counter-reset: literature-list
+}
+.article__literature-book {
   color: #000;
   font-family: Roboto;
   font-size: 20px;
   font-style: normal;
   font-weight: 100;
   line-height: normal;
-  margin-bottom: 70px;
+  margin-bottom: 20px;
+
+  position: relative;
+  padding-left: 20px;
+}
+.article__literature-book::before {
+  counter-increment: literature-list;
+  content: counter(literature-list) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+
 }
 .article__comments {
   margin-bottom: 65px;
@@ -860,6 +912,87 @@ main {
 
 
 
+/* Contacts */
+.contacts {
+  margin-left: 35px;
+}
+.contacts__title {
+  color: #000;
+  font-family: Roboto;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.contacts__text {
+  color: #000;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%;
+}
+.contacts__mail-address {
+  margin-bottom: 35px;
+}
+.contacts__address {
+  color: #000;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 30px */
+  margin-bottom: 5px;
+}
+.contacts__address_last {
+  margin-bottom:  35px;
+}
+.contacts__map {
+  width: 750px;
+  /* height: 400px; */
+  background-color: #eee;
+  margin-bottom: 80px;
+}
+.contacts__map img{
+  width: 750px;
+  height: 400px;
+}
+.contacts__ymap {
+  width: 400px;
+}
+.contacts__editor {
+  margin-bottom: 35px;
+}
+.contacts__editor-information {
+  margin-bottom: 75px;
+}
+.contacts__editor-information-name {
+  color: #000;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 30px */
+}
+.contacts__editor-information-phone {}
+.contacts__editor-information-email {}
+.contacts__support {
+  margin-bottom: 35px;
+}
+.contacts__support-information {}
+.contacts__support-information-name {
+  color: #000;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 30px */
+}
+.contacts__support-information-email {}
+
+
+
+
 
 /* SideBar */
 .sidebar {
@@ -876,7 +1009,15 @@ main {
   
 }
 .sidebar__image img {
+  width: 358px;
   margin: 0 auto;
+  transition: 0.1s;
+}
+.sidebar__image img:hover {
+  transform: scale(1.015);
+}
+.sidebar__image img:active {
+  transform: scale(0.95);
 }
 .sidebar__button {
   width: 364px;
@@ -916,6 +1057,74 @@ main {
 }
 .sidebar:last-child {
   margin-bottom: 0px;
+}
+
+
+
+
+
+.form-input {
+  border: 1px solid #000;
+  width: 300px;
+  height: 30px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  margin-right: 10px;
+
+  margin-left: 20px;
+}
+.admin__title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.form__button {
+  width: 120px;
+  height: 30px;
+  margin-bottom: 60px;
+  box-shadow: 2px 2px 4px #000;
+  margin-left: 20px;
+}
+.form-file {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+
+
+
+
+.circle1 {
+  position: absolute;
+  top: 75px;
+  left: -380px;
+  z-index: -1;
+  width: 1100px;
+  height: 1100px;
+  /* background-color: #575455; */
+  border-radius: 50%;
+  border: 84px solid rgba(255, 255, 255, 0.50);
+}
+
+.circle2 {
+  position: absolute;
+  top: 460px;
+  left: 1200px;
+  z-index: -1;
+  width: 1000px;
+  height: 1000px;
+  border-radius: 50%;
+  border: 140px solid rgba(255, 255, 255, 0.50);
+
+}
+.circle3 {
+  position: absolute;
+  top: 1400px;
+  left: -500px;
+  z-index: -1;
+  width: 2100px;
+  height: 2100px;
+  border-radius: 50%;
+  border: 84px solid rgba(255, 255, 255, 0.50);
 }
 
 

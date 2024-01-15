@@ -1,5 +1,7 @@
 import React from 'react';
-// import elipse from '../assets/Ellipse 8.svg';
+import { FormattedMessage } from 'react-intl';
+import image from '../assets/photo_5312080878601622670_y.jpg'
+import IssuesService from '../api/IssuesService';
 
 const ForAuthorspage = () => {
   return (
@@ -7,53 +9,62 @@ const ForAuthorspage = () => {
       <div className='image'></div>
 
       <div className="main__paragraph paragraph">
-        <div className="paragraph__title"><p>Полезные файлы</p></div>
+        <div className="paragraph__title"><p><FormattedMessage id='authors-paragraph__title1' /></p></div>
         <div className="paragraph__text">
-          <p>Мы предлагаем вам ознакомиться с файлами, приведёнными ниже и доступными для скачивания, которые позволят вам убедиться, что ваша статья соответствует всем нашим требованиям, и помогут в подготовке вашей статьи.</p>
+          <p><FormattedMessage id='authors-paragraph__text1' /></p>
         </div>
         <ol className="paragraph__list-ol">
-          <li className='paragraph__item'>Требования к статьям</li>
-          <li className='paragraph__item'>Публикационная этика</li>
-          <li className='paragraph__item'>Правила оформления статьи</li>
-          <li className='paragraph__item'>Путь статьи</li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__item1' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__item2' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__item3' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__item4' /></li>
         </ol>
       </div>
 
       <div className="main__paragraph paragraph">
-        <div className="paragraph__title"><p>Общая информация</p></div>
+        <div className="paragraph__title"><p><FormattedMessage id='authors-paragraph__title2' /></p></div>
         <ul className="paragraph__list-ul paragraph__text_list">
-          <li className='paragraph__item'>Публикация для всех авторов бесплатна.</li>
-          <li className='paragraph__item'>Приоритет имеют молодые авторы (до 39 лет).</li>
-          <li className='paragraph__item'>К публикации принимаются статьи на русском и английском языках.</li>
-          <li className='paragraph__item'>Все статьи должны содержать развернутые аннотации на английском языке.</li>
-          <li className='paragraph__item'>К рассмотрению принимаются ранее не опубликованные и не находящиеся на рассмотрении в других журналах статьи, объемом от 0,5 до 1,5 авт.л</li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__item5' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__item6' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__item7' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__item8' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__item9' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__item10' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__item11' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__item12' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__item13' /></li>
         </ul>
       </div>
 
+      <div className="forauthors__image">
+      <img src={image} alt="" />
+      </div>
+      
+
       <div className="main__paragraph paragraph">
-        <div className="paragraph__title"><p>Направления журнала</p></div>
+        <div className="paragraph__title"><p><FormattedMessage id='authors-paragraph__title3' /></p></div>
         <div className="paragraph__text">
-          <p>Журнал ориентирован на следующие научные специальности:</p>
+          <p><FormattedMessage id='authors-paragraph__text2' /></p>
         </div>
         <div className="paragraph__text paragraph__text_list">
-          <p><span className='paragraph__number'>2.2.2.</span> Электронная компонентная база микро- и наноэлектроники, квантовых устройств (технические науки)</p>
-          <p><span className='paragraph__number'>2.2.8.</span> Методы и приборы контроля и диагностики материалов, изделий, веществ и природной среды (технические науки)</p>
-          <p><span className='paragraph__number'>2.2.13.</span> Радиотехника, в том числе системы и устройства телевидения (технические науки)</p>
-          <p><span className='paragraph__number'>2.2.14.</span> Антенны, СВЧ-устройства и их технологии</p>
-          <p><span className='paragraph__number'>2.2.15.</span> Системы, сети и устройства телекоммуникаций (технические науки)</p>
-          <p><span className='paragraph__number'>2.2.16.</span> Радиолокация и радионавигация (технические науки)</p>
+          <p><span className='paragraph__number'>2.2.2.</span> <FormattedMessage id='authors-paragraph__text3' /></p>
+          <p><span className='paragraph__number'>2.2.8.</span> <FormattedMessage id='authors-paragraph__text4' /></p>
+          <p><span className='paragraph__number'>2.2.13.</span> <FormattedMessage id='authors-paragraph__text5' /></p>
+          <p><span className='paragraph__number'>2.2.14.</span> <FormattedMessage id='authors-paragraph__text6' /></p>
+          <p><span className='paragraph__number'>2.2.15.</span> <FormattedMessage id='authors-paragraph__text7' /></p>
+          <p><span className='paragraph__number'>2.2.16.</span> <FormattedMessage id='authors-paragraph__text8' /></p>
         </div>
       </div>
 
       <div className="main__paragraph paragraph">
-        <div className="paragraph__title"><p>Принципы рецензирования статей</p></div>
+        <div className="paragraph__title"><p><FormattedMessage id='authors-paragraph__titile4' /></p></div>
         <ol className="paragraph__list-ol">
-          <li className='paragraph__item'>Оценка соответствия статьи профилю журнала.</li>
-          <li className='paragraph__item'>Оценка соответствия статьи требованиям к публикации.</li>
-          <li className='paragraph__item'>Оценка соответствия статьи современному уровню разработки</li>
-          <li className='paragraph__item'>Оценка полноты раскрытия темы научной статьи и обоснование выводов.</li>
-          <li className='paragraph__item'>Оценка методов исследования проблемы, качества библиографического аппарата.</li>
-          <li className='paragraph__item'>Оценка языка, логики и стиля изложения.</li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__text9' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__text10' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__text11' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__text12' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__text13' /></li>
+          <li className='paragraph__item'><FormattedMessage id='authors-paragraph__text14' /></li>
         </ol>
       </div>
     </>

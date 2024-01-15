@@ -1,4 +1,4 @@
-// import { useState} from 'react'
+import { useState} from 'react'
 import { Routes, Route } from 'react-router-dom';
 
 // import Homepage from './pages/Homepage';
@@ -16,23 +16,37 @@ import Editorpage from './pages/Editorpage';
 import Issuepage from './pages/Issuepage';
 import Articlepage from './pages/Articlepage';
 
+import Adminpahe from './pages/Adminpahe';
+
+import { IntlProvider } from 'react-intl';
+import { LOCALES } from './i18n/locales'
+import { messages } from './i18n/messages'
+
 
 function App() {
+  const locale = LOCALES.ENGLISH;
+  const [currentLocale, setCurrentLocale] = useState(locale);
+  const handleChange = (language) => {
+    setCurrentLocale(language);
+  };
+
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Layout/>}>
-          <Route index element={<Mainpage/>} />
-          <Route path="catalog" element={<Catalogpage/>} />
-          <Route path="catalog/:id" element={<Issuepage/>} />
-          <Route path="catalog/article/:id" element={<Articlepage/>} />
-          <Route path="editors" element={<Editorspage/>} />
-          <Route path="editors/:id" element={<Editorpage/>} />
-          <Route path="contacts" element={<Contactspage/>} />
-          <Route path="authors" element={<ForAuthorspage/>} />
-          <Route path="*" element={<Notfoundpage/>} />
-        </Route>
-      </Routes>
+      <IntlProvider messages={messages[currentLocale]} locale={currentLocale} defaultLocale={LOCALES.ENGLISH}>
+        <Routes>
+          <Route path="/" element={<Layout currentLocale={currentLocale} handleChange={handleChange}/>}>
+            <Route index element={<Mainpage/>} />
+            <Route path="catalog" element={<Catalogpage currentLocale={currentLocale}/>} />
+            <Route path="catalog/:id" element={<Issuepage currentLocale={currentLocale}/>} />
+            <Route path="catalog/article/:id" element={<Articlepage currentLocale={currentLocale}/>} />
+            <Route path="editors" element={<Editorspage currentLocale={currentLocale}/>} />
+            <Route path="editors/:id" element={<Editorpage currentLocale={currentLocale}/>} />
+            <Route path="contacts" element={<Contactspage/>} />
+            <Route path="authors" element={<ForAuthorspage/>} />
+            <Route path="*" element={<Notfoundpage/>} />
+          </Route>
+        </Routes>
+      </IntlProvider>
     </>
   )
 }
