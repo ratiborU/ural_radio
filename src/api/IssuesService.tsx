@@ -113,4 +113,13 @@ export default class IssuesService {
   static async getFileLinkById(id) {
     return `https://journa-token.onrender.com/files/get/${id}?download=true`;
   }
+  static async getFileById(id) {
+    try {
+      await axios.get(`https://journa-token.onrender.com/files/get/${id}?download=false`);
+    } catch (e) {
+      console.log(e);
+      return '';
+    }
+    return `https://journa-token.onrender.com/files/get/${id}?download=false`;
+  }
 }

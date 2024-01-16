@@ -2,8 +2,10 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import image from '../assets/photo_5312080878601622670_y.jpg'
 import IssuesService from '../api/IssuesService';
+import { useFetching } from '../hooks/useFetching';
 
 const ForAuthorspage = () => {
+
   return (
     <>
       <div className='image'></div>

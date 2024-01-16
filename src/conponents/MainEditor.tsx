@@ -32,8 +32,7 @@ const MainEditor = ({reductor, currentLocale}) => {
       <div className="editor__block">
         <div className="editor__image">
           <Link to={`/editors/${reductor["id"]}`}>
-            <img src={reductorImage} alt="" />
-            {/* <img src={reductor.image} alt="" /> */}
+            <img className="editor__image-img" src={reductorImage} alt="" />
           </Link>
         </div>
         <div className="editor__description">

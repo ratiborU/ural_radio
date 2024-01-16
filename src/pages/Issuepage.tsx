@@ -13,6 +13,7 @@ const Issuepage = ({currentLocale}) => {
   const [issue, setIssue] = useState();
   const [lang, setLang] = useState('Ru');
   const [issuePdf, setIssuePdf] = useState();
+  const [issueVideo, setIssueVideo] = useState();
 
 
   const [fetchArticles, isArticlesLoading, articlesError] = useFetching( async () => {
@@ -22,13 +23,17 @@ const Issuepage = ({currentLocale}) => {
 
   const [fetchIssue, isIssueLoading, issueError] = useFetching( async () => {
     const issueResponse = await IssuesService.getIssueById(id);
-    console.log(issueResponse);
     setIssue(issueResponse);
   })
 
   const [fetchIssuePdf, isIssuePdfLoading, issuePdfError] = useFetching( async () => {
     const issueResponse = await IssuesService.getFileLinkById(issue["filePathId"]);
     setIssuePdf(issueResponse);
+  })
+  const [fetchIssueVideo, isIssueVideoLoading, issueVideoError] = useFetching( async () => {
+    const issueResponse = await IssuesService.getFileById(issue["videoPathId"]);
+    setIssueVideo(issueResponse);
+    console.log(issueResponse);
   })
 
   useEffect(() => {
@@ -38,6 +43,7 @@ const Issuepage = ({currentLocale}) => {
 
   useEffect(() => {
     fetchIssuePdf();
+    fetchIssueVideo();
   }, [issue]);
 
   useEffect(() => {
@@ -59,11 +65,13 @@ const Issuepage = ({currentLocale}) => {
         ? "загрузка"
         : articles.map(article => <ArticleComponent key={article["id"]} article={article} currentLocale={currentLocale}/>)
       }
-      <iframe className='issue_video'
-        title='Youtube player'
-        sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
-        src={`https://youtube.com/embed/hN_q-_nGv4U?autoplay=0`}>
-      </iframe>
+      {(isIssueVideoLoading || issueVideo == '')
+        ? <></>
+        : <video className='issue_video' width="750px" controls >
+            <source src={issueVideo} type="video/mp4"/>
+          </video>
+      }
+      
     </>
   );
 };

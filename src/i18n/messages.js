@@ -91,7 +91,20 @@ export const messages = {
     "issue-issue__button": "Download issue",
     "article-article-paragraph__button": "Download article",
 
-    "sidebar__button": "Subscribe"
+
+    "sidebar__button": "Subscribe",
+
+
+    "article-article__pdf-download": "Read PDF",
+    "article-article__pdf-download_second": "Biographical reference",
+    "article-article__annotation": "Annotation",
+    "article-article__words": "Keywords",
+    "article-article__literature": "Literature",
+    "article-article__comments-title": "Comments",
+    "article-article__comments-subtitle1": "Leave a comment",
+    "article-article__comments-subtitle2": "Your comment",
+    "article-article__comment-button": "Send",
+    "article-article__comment-textarea": "Write a comment...",
   },
   [LOCALES.RUSSIAN]: {
     "mainpage-paragraph__title1": "О журнале",
@@ -182,8 +195,22 @@ export const messages = {
     "issue-issue__title": "Содержание",
     "issue-issue__button": "Скачать выпуск",
 
+
     "article-article-paragraph__button": "Скачать статью",
 
-    "sidebar__button": "Оформить подписку"
+
+    "sidebar__button": "Оформить подписку",
+
+
+    "article-article__pdf-download": "Читать PDF",
+    "article-article__pdf-download_second": "Биографическая ссылка",
+    "article-article__annotation": "Аннотация",
+    "article-article__words": "Ключевые слова",
+    "article-article__literature": "Литература",
+    "article-article__comments-title": "Комментарии",
+    "article-article__comments-subtitle1": "Оставить комментарий",
+    "article-article__comments-subtitle2": "Ваш комментарий",
+    "article-article__comment-button": "Отправить",
+    "article-article__comment-textarea": "Введите комментарий...",
   }
 }
