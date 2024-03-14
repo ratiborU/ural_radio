@@ -1,36 +1,35 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useFetching } from '../hooks/useFetching';
-import IssuesService from '../api/IssuesService';
+import FileService from '../api/FileService';
 import { FormattedMessage } from 'react-intl'
+import { IArticle, IRuEng } from '../types/types';
 
-const ArticleComponent = ({article, currentLocale}) => {
-  const [articlePdf, setArticlePdf] = useState('');
-  const [lang, setLang] = useState('Ru');
+import { useQuery } from 'react-query';
+import { useLanguageContext } from '../i18n/languageContext';
 
-  const [fetchArticlePdf, isArticlePdfLoading, articlePdfError] = useFetching( async () => {
-    const articlePdfResponse = await IssuesService.getFileLinkById("6599a59efe7f2cec36368d71"); //article["filePathId"]
-    console.log(articlePdfResponse);
-    setArticlePdf(articlePdfResponse);
-  })
 
-  useEffect(() => {
-    fetchArticlePdf();
-  }, []);
+type ArticleComponentProps = {
+  article: IArticle
+}
 
-  useEffect(() => {
-    setLang(currentLocale == "en-US" ? "Eng" : "Ru");
-  }, [currentLocale]);
-  
+
+const ArticleComponent = ({article} : ArticleComponentProps) => {
+  const {lang} = useLanguageContext();
+
+  const { data: file } = useQuery({
+    queryFn: async () => await FileService.getFileLinkById("6599a59efe7f2cec36368d71"),
+    queryKey: ["file"],
+    staleTime: Infinity,
+  });
 
   return (
     <div className="article-paragraph">
-      <a href={articlePdf}>
+      <a href={file}>
         <button className='article-paragraph__button'><FormattedMessage id='article-article-paragraph__button' /></button>
       </a>
       <div className="article-paragraph__description">
         <Link to={`/catalog/article/${article["id"]}`} className='article-paragraph__name'>
-          {article["title"][lang]}
+          {article["title"][lang as keyof IRuEng]}
         </Link>
         <p className='article-paragraph__authors'>{article["authors"].join(", ")}</p>
       </div>

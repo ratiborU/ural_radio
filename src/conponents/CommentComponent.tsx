@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect, useContext } from 'react';
 import image from "../assets/user.svg";
+import { IComment, IRuEng } from '../types/types';
+import { useLanguageContext } from '../i18n/languageContext';
 
-const CommentComponent = ({comment, currentLocale}) => {
+
+type CommentComponentProps = {
+  comment: IComment;
+}
+
+
+const CommentComponent = ({comment} : CommentComponentProps) => {
+  const {lang} = useLanguageContext();
+
+  // нужно исправить дату
   const date = new Date(comment["date"]);
-  const [lang, setLang] = useState('Ru');
-
-  useEffect(() => {
-    setLang(currentLocale == "en-US" ? "Eng" : "Ru");
-  }, [currentLocale]);
   
   return (
     <div className="article__comment">
@@ -15,8 +21,8 @@ const CommentComponent = ({comment, currentLocale}) => {
         <img src={image} alt="" />
       </div>
       <div className="comment_description">
-        <p className="comment__text">{comment["content"][lang]}</p>
-        <p className="comment__date">21.12.24</p>
+        <p className="comment__text">{comment["content"][lang as keyof IRuEng]}</p>
+        <p className="comment__date">{date.getMonth()} {date.getFullYear()}</p>
       </div>
     </div>
   );

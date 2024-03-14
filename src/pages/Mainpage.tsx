@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useIntl } from 'react-intl';
+// import React, { useState, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl'
 
 
@@ -7,8 +6,6 @@ const Mainpage = () => {
   return (
     <>
       <div className="main__paragraph paragraph">
-        {/* <FormattedMessage id='learn_to' /> */}
-        {/* <FormattedMessage id='' /> */}
         <div className="paragraph__title"><p><FormattedMessage id='mainpage-paragraph__title1' /></p></div>
         <div className="paragraph__text">
           <p><FormattedMessage id='mainpage-paragraph__text1' /></p>

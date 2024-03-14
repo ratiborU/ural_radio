@@ -1,45 +1,42 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useFetching } from '../hooks/useFetching';
-import IssuesService from '../api/IssuesService';
+import FileService from '../api/FileService';
 import { FormattedMessage } from 'react-intl'
-
-const IssuseComponent = ({item, currentLocale}) => {
-  const date = new Date(item["date"]);
-  const [lang, setLang] = useState('Ru');
-  const [coverImage, setCoverImage] = useState();
-  
-
-  const [fetchCoverImage, isCoverImageLoading, coverImageError] = useFetching( async () => {
-    const coverImageResponse = await IssuesService.getImageLinkById(item["coverPathId"]);
-    // console.log(coverImageResponse);
-    setCoverImage(coverImageResponse);
-  })
+import { IIssue, IRuEng } from '../types/types';
+import { useLanguageContext } from '../i18n/languageContext';
+import { useQuery } from 'react-query';
 
 
-  useEffect(() => {
-    fetchCoverImage();
-  }, []);
+type IssueComponentProps = {
+  issue: IIssue;
+}
 
-  useEffect(() => {
-    setLang(currentLocale == "en-US" ? "Eng" : "Ru");
-  }, [currentLocale]);
-  
+
+const IssuseComponent = ({issue}: IssueComponentProps) => {
+  const {lang} = useLanguageContext();
+  const date = new Date(issue["date"]);
+
+  const { data: image } = useQuery({
+    queryFn: async () => await FileService.getFileLinkById("6599a59efe7f2cec36368d71"),
+    queryKey: ["image"],
+    staleTime: Infinity,
+  });
 
   return (
     <div className="catalog__item">
       <div className="catalog__item-image">
-        <Link className="catalog__item-image-link" to={`/catalog/${item["id"]}`}>
-        <img src={coverImage} alt="" />
+        <Link className="catalog__item-image-link" to={`/catalog/${issue["id"]}`}>
+        <img src={image} alt="" />
         </Link>
       </div>
       <p className='catalog__item-date'>{date.getDate()} {date.getMonth()} {date.getFullYear()}</p>
-      <p className='catalog__item-title'>{item["title"][lang]}</p>
-      <Link  to={`/catalog/${item["id"]}`}>
+      <p className='catalog__item-title'>{issue["title"][lang as keyof IRuEng]}</p>
+      <Link  to={`/catalog/${issue["id"]}`}>
         <button className='catalog__item-button'><FormattedMessage id='catalog-catalog__item-button' /></button>
       </Link>
     </div>
   );
 };
+
 
 export default IssuseComponent;

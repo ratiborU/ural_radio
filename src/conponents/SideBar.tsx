@@ -1,50 +1,38 @@
-import React, { useState, useEffect } from 'react';
+// import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useFetching } from '../hooks/useFetching';
 import IssuesService from '../api/IssuesService';
+import FileService from '../api/FileService';
 import { FormattedMessage } from 'react-intl'
-import image from "../assets/issues/tom7n3.jpeg";
+import imageStock from "../assets/issues/tom7n3.jpeg";
+
+import { useQuery } from 'react-query';
 
 
 const SideBar = () => {
-  const [lastIssue, stLastIssue] = useState({});
-  const [lastIssueImage, stLastIssueImage] = useState();
+  const {status: issueStatus, data: issue } = useQuery({
+    queryFn: async () => await IssuesService.getLastIssue(),
+    queryKey: ["issue"],
+    staleTime: Infinity,
+  });
+
+  const {data: image} = useQuery({
+    queryFn: async () => await FileService.getImageLinkById(issue?.coverPathId),
+    queryKey: ["image", issue?.coverPathId],
+    enabled: issueStatus === 'success',
+    staleTime: Infinity
+  });
 
 
-  const [fetchIssue, isIssueLoading, issueError] = useFetching( async () => {
-    const issuesResponse = await IssuesService.getAllIssues();
-    issuesResponse.sort((a, b) => a["title"]["Ru"] < b["title"]["Ru"] ? 1 : -1);
-    // console.log(issuesResponse[0]);
-    stLastIssue(issuesResponse[0]);
-  })
-
-
-  const [fetchIssueImage, isIssueImageLoading, issueImageError] = useFetching( async () => {
-    const issuesResponse = await IssuesService.getImageLinkById(lastIssue["coverPathId"]);
-    // console.log(issuesResponse);
-    stLastIssueImage(issuesResponse);
-  })
-
-
-  useEffect(() => {
-    fetchIssue();
-  }, []);
-
-
-  useEffect(() => {
-    fetchIssueImage();
-  }, [lastIssue]);
-
+  if (issueStatus !== "success") {
+    return <></>;
+  }
 
   return (
     <div className="sidebar">
       <div className="sidebar__image">
-        {isIssueLoading 
-          ? <p>загрузка</p> 
-          : <Link to={`/catalog/${lastIssue["id"]}`}>
-              <img src={lastIssueImage ? image : lastIssueImage} alt="#" />
-            </Link>
-        }
+        <Link to={`/catalog/${issue?.id}`}>
+          <img src={image ? imageStock : image} alt="#" />
+        </Link>
       </div>
       <a href="https://www.akc.ru/itm/ural-radio-engineering-journal/" target='blank'>
         <button className="sidebar__button">

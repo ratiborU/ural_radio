@@ -1153,3 +1153,15 @@ footer {
   display: block;
   border-bottom: 1px solid #000;
 }
+
+
+.input__class {
+  display: block;
+  font-size: 40px;
+  border: 1px solid #000;
+  margin-bottom: 20px;
+}
+
+.buttom {
+  margin-bottom: 1000px;
+}

@@ -1,36 +1,27 @@
-import React, { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import IssuseComponent from '../conponents/IssueComponent';
 import IssuesService from '../api/IssuesService';
-import { useFetching } from '../hooks/useFetching';
 
-const Catalogpage = ({currentLocale}) => {
-  const [issues, setIssues] = useState();
+import { useQuery} from 'react-query';
 
+const Catalogpage = () => {
+  const { data: issues, isLoading } = useQuery({
+    queryFn: async () => await IssuesService.getAllIssues(),
+    queryKey: ["issues"],
+    staleTime: Infinity,
+  });
+  
 
-  const [fetchIssues, isIssuesLoading, issuesError] = useFetching( async () => {
-    const issuesResponse = await IssuesService.getAllIssues();
-    // console.log(issuesResponse);
-    issuesResponse.sort((a, b) => a["title"]["Ru"] < b["title"]["Ru"] ? 1 : -1);
-    setIssues(issuesResponse);
-    console.log(issuesResponse);
-  })
-
-  useEffect(() => {
-    fetchIssues();
-  }, []);
-
+  if (isLoading) {
+    return <>Загрузка...</>
+  }
   
   return (
-    <>
-      {isIssuesLoading 
-        ? <p>загрузка</p>
-        : <div className="catalog">
-            {issues.map((item, id) => {
-              return <IssuseComponent key={id} item={item} currentLocale={currentLocale}/>
-            })}
-          </div>
-      }
-    </>
+    <div className="catalog">
+      {issues?.map((issue, id) => {
+        return <IssuseComponent key={id} issue={issue}/>
+      })}
+    </div>
   );
 };
 

@@ -1,10 +1,7 @@
-import React from 'react';
 import map from "../assets/photo_5269545055805365753_y.jpg"
 import { FormattedMessage } from 'react-intl'
 
 const Contactspage = () => {
-  
-
   return (
     <>
       <div className="contacts">

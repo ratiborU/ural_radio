@@ -1,38 +1,35 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import IssuesService from '../api/IssuesService';
-import { useFetching } from '../hooks/useFetching';
+import ReductorService from '../api/ReductorService';
+import FileService from '../api/FileService';
+import { useLanguageContext } from '../i18n/languageContext';
+import { useQuery } from 'react-query';
+import { IRuEng } from '../types/types';
 
-const Editorpage = ({currentLocale}) => {
-  const [reductor, setReductor] = useState();
-  const [reductorImage, setReductorImage] = useState();
-  const [lang, setLang] = useState('Ru');
+
+const Editorpage = () => {
   const {id} = useParams();
-
-
-  const [fetchReductor, isReductorLoading, reductorError] = useFetching( async () => {
-    const reductorResponse = await IssuesService.getReductorById(id);
-    setReductor(reductorResponse);
-  })
-
-  const [fetchReductorImage, isReductorImageLoading, reductorImageError] = useFetching( async () => {
-    const reductorImageResponse = await IssuesService.getImageLinkById(reductor["imagePathId"]);
-    setReductorImage(reductorImageResponse);
-  })
+  const {lang} = useLanguageContext();
 
   
-  useEffect(() => {
-    fetchReductor();
-  }, []);
 
-  
-  useEffect(() => {
-    fetchReductorImage();
-  }, [reductor]);
+  const {status: reductorStatus, data: reductor} = useQuery({
+    queryFn: async () => await ReductorService.getReductorById(id),
+    queryKey: ["reductor", id],
+    staleTime: Infinity
+  });
 
-  useEffect(() => {
-    setLang(currentLocale == "en-US" ? "Eng" : "Ru");
-  }, [currentLocale]);
+  const {data: image} = useQuery({
+    queryFn: async () => await FileService.getImageLinkById(reductor?.imagePathId),
+    queryKey: ["reductor", reductor?.imagePathId],
+    enabled: reductorStatus === 'success',
+    staleTime: Infinity
+  });
+
+
+  if (reductorStatus !== 'success') {
+    return 'загрузка';
+  }
 
 
   return (
@@ -40,26 +37,23 @@ const Editorpage = ({currentLocale}) => {
       <div className="editor-page">
         <div className="editor-page__block">
           <div className="editor-page__image">
-            {isReductorLoading && isReductorImageLoading 
-              ? <p></p> 
-              : <img src={reductorImage} alt="" />
-            }
+          <img src={image} alt="" />
           </div>
           <div className="editor-page__description">
-            {!isReductorLoading ? <p className='editor-page__name'>{reductor["name"][lang]}</p> : <p>загрузка</p>}
-            {!isReductorLoading ? <p className='editor-page__workplace'>{reductor["description"][lang]}</p> : <p>загрузка</p>}
+            <p className='editor-page__name'>{reductor?.name[lang as keyof IRuEng]}</p>
+            <p className='editor-page__workplace'>{reductor?.description[lang as keyof IRuEng]}</p>
           </div>
         </div>
 
         <div className="editor-page__email-block">
           <div className="editor-page__email-block-container">
             <div className="editor-page__scopus">Scopus</div>
-            {!isReductorLoading ? <div className="editor-page__email">{reductor["email"]}</div> : <p>загрузка</p>}
+            <div className="editor-page__email">{reductor["email"]}</div>
           </div>
         </div>
 
         <div className="editor-page__text">
-          {!isReductorLoading ? <p>{reductor["content"][lang]}</p> : <p>загрузка</p>}
+          <p>{reductor?.content[lang as keyof IRuEng]}</p>
         </div>
       </div>
     </div>

@@ -1,59 +1,53 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useFetching } from '../hooks/useFetching';
+// import React, { useEffect, useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import IssuesService from '../api/IssuesService';
+import ArticleService from '../api/ArticleService';
+import FileService from '../api/FileService';
 import ArticleComponent from '../conponents/ArticleComponent';
 import { FormattedMessage } from 'react-intl'
+import { IRuEng } from '../types/types';
+import { useLanguageContext } from '../i18n/languageContext';
+import { useQuery } from 'react-query';
 
 
-const Issuepage = ({currentLocale}) => {
+const Issuepage = () => {
   const {id} = useParams();
+  const {lang} = useLanguageContext();
 
-  const [articles, setArticles] = useState();
-  const [issue, setIssue] = useState();
-  const [lang, setLang] = useState('Ru');
-  const [issuePdf, setIssuePdf] = useState();
-  const [issueVideo, setIssueVideo] = useState();
+  const {isLoading: isLoadingIssue, data: issue} = useQuery({
+    queryFn: async () => await IssuesService.getIssueById(id),
+    queryKey: ["issue", id],
+    staleTime: Infinity
+  });
 
+  const {isLoading: isLoadingArticles, data: articles} = useQuery({
+    queryFn: async () => await ArticleService.getArticlesByIssueId(id),
+    queryKey: ["articlesA", id],
+    staleTime: Infinity
+  });
 
-  const [fetchArticles, isArticlesLoading, articlesError] = useFetching( async () => {
-    const articlesResponse = await IssuesService.getArticlesByIssueId(id);
-    setArticles(articlesResponse);
-  })
+  const {isLoading: isLoadingVideo, data: video} = useQuery({
+    queryFn: async () => await FileService.getFileById(issue?.videoPathId),
+    queryKey: ["video", issue?.videoPathId],
+    enabled: !isLoadingIssue,
+    staleTime: Infinity
+  });
 
-  const [fetchIssue, isIssueLoading, issueError] = useFetching( async () => {
-    const issueResponse = await IssuesService.getIssueById(id);
-    setIssue(issueResponse);
-  })
+  const {data: pdf} = useQuery({
+    queryFn: async () => await FileService.getFileById(issue?.filePathId),
+    queryKey: ["pdf", issue?.filePathId],
+    enabled: !isLoadingIssue,
+    staleTime: Infinity
+  });
 
-  const [fetchIssuePdf, isIssuePdfLoading, issuePdfError] = useFetching( async () => {
-    const issueResponse = await IssuesService.getFileLinkById(issue["filePathId"]);
-    setIssuePdf(issueResponse);
-  })
-  const [fetchIssueVideo, isIssueVideoLoading, issueVideoError] = useFetching( async () => {
-    const issueResponse = await IssuesService.getFileById(issue["videoPathId"]);
-    setIssueVideo(issueResponse);
-    console.log(issueResponse);
-  })
-
-  useEffect(() => {
-    fetchArticles();
-    fetchIssue();
-  }, [id]);
-
-  useEffect(() => {
-    fetchIssuePdf();
-    fetchIssueVideo();
-  }, [issue]);
-
-  useEffect(() => {
-    setLang(currentLocale == "en-US" ? "Eng" : "Ru");
-  }, [currentLocale]);
+  if (isLoadingIssue) {
+    return "загрузка";
+  }
 
   return (
     <>
-      <p className='issue__title'>{isIssueLoading ? "загрузка" : issue["title"][lang]}</p>
-      <a href={issuePdf}>
+      <p className='issue__title'>{issue?.title[lang as keyof IRuEng]}</p>
+      <a href={pdf}>
         <button className='issue__button'>
         <FormattedMessage id='issue-issue__button' />
         </button>
@@ -61,14 +55,15 @@ const Issuepage = ({currentLocale}) => {
       
       <p className='issue__title'><FormattedMessage id='issue-issue__title' /></p>
 
-      {isArticlesLoading 
+      {isLoadingArticles 
         ? "загрузка"
-        : articles.map(article => <ArticleComponent key={article["id"]} article={article} currentLocale={currentLocale}/>)
+        : articles?.map(article => <ArticleComponent key={article["id"]} article={article}/>)
       }
-      {(isIssueVideoLoading || issueVideo == '')
+
+      {(isLoadingVideo || video == '')
         ? <></>
         : <video className='issue_video' width="750px" controls >
-            <source src={issueVideo} type="video/mp4"/>
+            <source src={video} type="video/mp4"/>
           </video>
       }
       

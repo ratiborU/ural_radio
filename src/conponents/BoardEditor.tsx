@@ -1,39 +1,34 @@
-import React, { useState, useEffect } from 'react';
+// import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useFetching } from '../hooks/useFetching';
-import IssuesService from '../api/IssuesService';
-// import reductors from '../api/ReductorsApi';
-// import image1 from "../assets/editors/editor1.jpg";
-
-const BoardEditor = ({reductor, currentLocale}) => {
-  
-  const [reductorImage, setReductorImage] = useState();
-  const [lang, setLang] = useState('Ru');
-  
-
-  const [fetchReductorImage, isReductorImageLoading, reductorImageError] = useFetching( async () => {
-    const reductorImageResponse = await IssuesService.getImageLinkById(reductor["imagePathId"]);
-    setReductorImage(reductorImageResponse);
-  })
+import FileService from '../api/FileService';
+import { IReductor, IRuEng } from '../types/types';
+import { useQuery } from 'react-query';
+import { useLanguageContext } from '../i18n/languageContext';
 
 
-  useEffect(() => {
-    fetchReductorImage();
-  }, []);
+type BoardEditorProps = {
+  reductor: IReductor;
+}
 
-  useEffect(() => {
-    setLang(currentLocale == "en-US" ? "Eng" : "Ru");
-  }, [currentLocale]);
+
+const BoardEditor = ({reductor}: BoardEditorProps) => {
+  const {lang} = useLanguageContext();
+
+  const { data: image } = useQuery({
+    queryFn: async () => await FileService.getImageLinkById(reductor["imagePathId"]),
+    queryKey: ["image"],
+    staleTime: Infinity,
+  });
 
   return (
     <div>
       <div className="editors__board-element">
         <div className="editors__board-image">
           <Link  to={`/editors/${reductor["id"]}`}>
-            <img src={reductorImage} alt="" />
+            <img src={image} alt="" />
           </Link>
         </div>
-        <p className='editors__board-name'>{reductor["name"][lang]}</p>
+        <p className='editors__board-name'>{reductor["name"][lang as keyof IRuEng]}</p>
       </div>
     </div>
   );

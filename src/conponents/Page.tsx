@@ -1,7 +1,13 @@
 import React from 'react';
 import SideBar from './SideBar';
 
-const Page = ({ children }) => {
+
+type PageProps = {
+  children: React.ReactNode;
+}
+
+
+const Page = ({children}: PageProps) => {
   return (
     <>
       <main className='main'>
