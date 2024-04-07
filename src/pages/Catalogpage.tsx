@@ -14,7 +14,20 @@ const Catalogpage = () => {
   });
   
   if (error) {
-    return <p>Произошла ошибка</p>
+    return (<>
+      <Helmet>
+        <title>Ural Radio Engineering Journal</title>
+        <meta name="description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
+
+        <meta property="og:title" content="Ural Radio Engineering Journal"/>
+        <meta property="og:description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
+        <meta property="og:locale:alternate" content="en_US" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="https://ural-radio-toms-projects-f62b8a1d.vercel.app/"/>
+        <meta property="og:image" content={lastIssue}/>
+      </Helmet>
+      <p>Произошла ошибка</p>
+    </>)
   }
   if (isLoading) {
     return <>Загрузка...</>
@@ -30,7 +43,7 @@ const Catalogpage = () => {
         <meta property="og:description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
         <meta property="og:locale:alternate" content="en_US" />
         <meta property="og:type" content="website"/>
-        <meta property="og:url" content="http://localhost:5173/catalog"/>
+        <meta property="og:url" content="https://ural-radio-toms-projects-f62b8a1d.vercel.app/"/>
         <meta property="og:image" content={lastIssue}/>
       </Helmet>
       <div className="catalog">

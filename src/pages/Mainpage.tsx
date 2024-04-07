@@ -15,8 +15,9 @@ const Mainpage = () => {
         <meta property="og:description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
         <meta property="og:locale:alternate" content="en_US" />
         <meta property="og:type" content="website"/>
-        <meta property="og:url" content="http://localhost:5173/catalog"/>
+        <meta property="og:url" content="https://ural-radio-toms-projects-f62b8a1d.vercel.app/"/>
         <meta property="og:image" content={lastIssue}/>
+        <meta property="og:image:secure_url" content={lastIssue} />
       </Helmet>
       <div className="main__paragraph paragraph">
         <div className="paragraph__title"><p><FormattedMessage id='mainpage-paragraph__title1' /></p></div>

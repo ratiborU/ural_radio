@@ -15,7 +15,7 @@ const ForAuthorspage = () => {
         <meta property="og:description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
         <meta property="og:locale:alternate" content="en_US" />
         <meta property="og:type" content="website"/>
-        <meta property="og:url" content="http://localhost:5173/catalog"/>
+        <meta property="og:url" content="https://ural-radio-toms-projects-f62b8a1d.vercel.app/"/>
         <meta property="og:image" content={lastIssue}/>
       </Helmet>
       <div className='image'></div>
