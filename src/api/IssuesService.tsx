@@ -8,9 +8,8 @@ export default class IssuesService {
     const response =  await axios.get('https://journa-token.onrender.com/editions/get/all')
       .then((response) => {
         return response["data"]["data"];
-      }).catch(() => {
-        // console.log(error);
-        return [];
+      }).catch((error: Error) => {
+        throw new Error(error.message);
       }); 
     return response;
   }

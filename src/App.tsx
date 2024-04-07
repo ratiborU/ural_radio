@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 import Notfoundpage from './pages/Notfoundpage';
-import Layout from './conponents/Layout';
+import Layout from './components/Layout';
 
 import Mainpage from './pages/Mainpage';
 import Catalogpage from './pages/Catalogpage';

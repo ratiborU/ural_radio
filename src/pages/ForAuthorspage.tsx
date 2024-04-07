@@ -1,10 +1,23 @@
 import { FormattedMessage } from 'react-intl';
 import image from '../assets/photo_5312080878601622670_y.jpg'
+import { Helmet } from 'react-helmet';
+import lastIssue from '../assets/issues/tom7n3.jpeg';
 
 
 const ForAuthorspage = () => {
   return (
     <>
+      <Helmet>
+        <title>Ural Radio Engineering Journal</title>
+        <meta name="description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
+
+        <meta property="og:title" content="Ural Radio Engineering Journal"/>
+        <meta property="og:description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
+        <meta property="og:locale:alternate" content="en_US" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="http://localhost:5173/catalog"/>
+        <meta property="og:image" content={lastIssue}/>
+      </Helmet>
       <div className='image'></div>
 
       <div className="main__paragraph paragraph">

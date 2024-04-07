@@ -15,23 +15,24 @@ const SideBar = () => {
     staleTime: Infinity,
   });
 
-  const {data: image} = useQuery({
+  const {data: image, error} = useQuery({
     queryFn: async () => await FileService.getImageLinkById(issue?.coverPathId),
     queryKey: ["image", issue?.coverPathId],
     enabled: issueStatus === 'success',
-    staleTime: Infinity
+    staleTime: Infinity,
+    retry: 0
   });
 
 
-  if (issueStatus !== "success") {
-    return <></>;
-  }
+  // if (issueStatus !== "success") {
+  //   return <></>;
+  // }
 
   return (
     <div className="sidebar">
       <div className="sidebar__image">
         <Link to={`/catalog/${issue?.id}`}>
-          <img src={image ? imageStock : image} alt="#" />
+          <img src={error ? imageStock : image} alt="" />
         </Link>
       </div>
       <a href="https://www.akc.ru/itm/ural-radio-engineering-journal/" target='blank'>

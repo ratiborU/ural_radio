@@ -1,9 +1,17 @@
 import axios from "axios";
 
-
+// возможны ошибки
 export default class FileService {
   static async getImageLinkById(id: string | undefined) {
-    return `https://journa-token.onrender.com/files/get/${id}?download=false`;
+    const response =  await axios.get(`https://journa-token.onrender.com/files/get/${id}?download=false`)
+      .then(() => {
+        return `https://journa-token.onrender.com/files/get/${id}?download=false`;
+      }).catch((error: Error) => {
+        throw new Error(error.message);
+      }); 
+    return response;
+    // return '';
+    // return `https://journa-token.onrender.com/files/get/${id}?download=false`;
   }
 
 

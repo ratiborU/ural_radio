@@ -3,18 +3,19 @@ import { useParams } from 'react-router-dom';
 import IssuesService from '../api/IssuesService';
 import ArticleService from '../api/ArticleService';
 import FileService from '../api/FileService';
-import ArticleComponent from '../conponents/ArticleComponent';
+import ArticleComponent from '../components/ArticleComponent';
 import { FormattedMessage } from 'react-intl'
 import { IRuEng } from '../types/types';
 import { useLanguageContext } from '../i18n/languageContext';
 import { useQuery } from 'react-query';
 
 
+
 const Issuepage = () => {
   const {id} = useParams();
   const {lang} = useLanguageContext();
 
-  const {isLoading: isLoadingIssue, data: issue} = useQuery({
+  const {isLoading: isLoadingIssue, data: issue, error} = useQuery({
     queryFn: async () => await IssuesService.getIssueById(id),
     queryKey: ["issue", id],
     staleTime: Infinity
@@ -40,12 +41,16 @@ const Issuepage = () => {
     staleTime: Infinity
   });
 
+  if (error) {
+    return <p>Произошла ошибка</p>
+  }
   if (isLoadingIssue) {
     return "загрузка";
   }
 
   return (
     <>
+
       <p className='issue__title'>{issue?.title[lang as keyof IRuEng]}</p>
       <a href={pdf}>
         <button className='issue__button'>
