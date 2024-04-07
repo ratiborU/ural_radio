@@ -8,7 +8,7 @@ const Mainpage = () => {
   console.log(window.location.href);
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>Ural Radio Engineering Journal</title>
         <meta name="description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
 
@@ -19,7 +19,7 @@ const Mainpage = () => {
         <meta property="og:url" content={window.location.href}/>
         <meta property="og:image" content={lastIssue}/>
         <meta property="og:image:secure_url" content={lastIssue} />
-      </Helmet>
+      </Helmet> */}
       <div className="main__paragraph paragraph">
         <div className="paragraph__title"><p><FormattedMessage id='mainpage-paragraph__title1' /></p></div>
         <div className="paragraph__text">
