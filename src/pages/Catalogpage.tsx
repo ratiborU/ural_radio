@@ -1,8 +1,7 @@
 // import { useEffect, useState } from 'react';
 import IssuseComponent from '../components/IssueComponent';
 import IssuesService from '../api/IssuesService';
-import {Helmet} from "react-helmet";
-import lastIssue from '../assets/issues/tom7n3.jpeg';
+import HelmetComponent from '../components/HelmetComponent';
 
 import { useQuery} from 'react-query';
 
@@ -15,17 +14,7 @@ const Catalogpage = () => {
   
   if (error) {
     return (<>
-      <Helmet>
-        <title>Ural Radio Engineering Journal</title>
-        <meta name="description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
-
-        <meta property="og:title" content="Ural Radio Engineering Journal"/>
-        <meta property="og:description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
-        <meta property="og:locale:alternate" content="en_US" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:url" content={window.location.href}/>
-        <meta property="og:image" content={lastIssue}/>
-      </Helmet>
+      <HelmetComponent/>
       <p>Произошла ошибка</p>
     </>)
   }
@@ -35,17 +24,7 @@ const Catalogpage = () => {
   
   return (
     <>
-      <Helmet>
-        <title>Ural Radio Engineering Journal</title>
-        <meta name="description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
-
-        <meta property="og:title" content="Ural Radio Engineering Journal"/>
-        <meta property="og:description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
-        <meta property="og:locale:alternate" content="en_US" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:url" content={window.location.href}/>
-        <meta property="og:image" content={lastIssue}/>
-      </Helmet>
+      <HelmetComponent/>
       <div className="catalog">
         {issues?.map((issue, id) => {
           return <IssuseComponent key={id} issue={issue}/>

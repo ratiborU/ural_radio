@@ -35,7 +35,7 @@ const Articlepage = () => {
     staleTime: Infinity
   });
 
-  const {status: issueStatus, data: issue} = useQuery({
+  const {data: issue} = useQuery({
     queryFn: async () => await IssuesService.getIssueById(article?.editionId),
     queryKey: ["issue"],
     enabled: articleStatus === 'success',
@@ -78,7 +78,7 @@ const Articlepage = () => {
     return <p>Произошла ошибка</p>
   }
   if (articleStatus === 'loading') {
-    return "загрузка";
+    return <p>Загрузка...</p>;
   }
 
 
@@ -97,10 +97,9 @@ const Articlepage = () => {
         {article?.keywords.map(keyword => <meta property="article:tag" content={keyword[lang as keyof IRuEng]}/>)}
         <meta property="article:published_time" content={issue?.date}/>
 
-        {/* <meta name='article_volume' content='7'/> */}
         <meta property='og:image' content={issueImage}/>
-        <meta property="og:image:width" content="1200"/>
-        <meta property="og:image:height" content="630"/>
+        <meta property="og:image:width" content="600"/>
+        <meta property="og:image:height" content="850"/>
         <meta property='og:url' content={`http://localhost:5173/catalog/article/${id}`}/>
       </Helmet>
 

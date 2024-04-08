@@ -1,22 +1,11 @@
 import map from "../assets/photo_5269545055805365753_y.jpg"
 import { FormattedMessage } from 'react-intl'
-import { Helmet } from 'react-helmet';
-import lastIssue from '../assets/issues/tom7n3.jpeg';
+import HelmetComponent from '../components/HelmetComponent';
 
 const Contactspage = () => {
   return (
     <>
-      <Helmet>
-        <title>Ural Radio Engineering Journal</title>
-        <meta name="description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
-
-        <meta property="og:title" content="Ural Radio Engineering Journal"/>
-        <meta property="og:description" content="Рецензируемый международный научно-технический журнал с открытым доступом, посвященный последним достижениям радиоэлектроники и связи."/>
-        <meta property="og:locale:alternate" content="en_US" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:url" content="https://ural-radio-toms-projects-f62b8a1d.vercel.app/"/>
-        <meta property="og:image" content={lastIssue}/>
-      </Helmet>
+      <HelmetComponent/>
       <div className="contacts">
         <div className="contacts__mail-address contacts__title"><FormattedMessage id='contacts-mail-address' /></div>
         <div className="contacts__address contacts__text"><FormattedMessage id='contacts-address1' /></div>

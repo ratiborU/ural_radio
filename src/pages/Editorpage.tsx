@@ -13,7 +13,7 @@ const Editorpage = () => {
 
   
 
-  const {status: reductorStatus, data: reductor} = useQuery({
+  const {status: reductorStatus, data: reductor, error} = useQuery({
     queryFn: async () => await ReductorService.getReductorById(id),
     queryKey: ["reductor", id],
     staleTime: Infinity
@@ -26,7 +26,9 @@ const Editorpage = () => {
     staleTime: Infinity
   });
 
-
+  if (error) {
+    return <p>Произошла ошибка</p>
+  }
   if (reductorStatus !== 'success') {
     return 'загрузка';
   }
